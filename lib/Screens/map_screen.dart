@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:google_maps/Screens/searchbar.dart';
+=======
+>>>>>>> 293a48079c215c4a78742071dbef7bdd060366ce
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
@@ -38,6 +41,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       body:Stack(
         children: [
           GoogleMap(
@@ -64,6 +68,31 @@ class _MapScreenState extends State<MapScreen> {
           ),
           Searchbar(),
         ],
+=======
+      body: _currentPosition == null? const Center(
+        child: CircularProgressIndicator(),
+      ):GoogleMap(
+        onMapCreated: ((GoogleMapController controller)=> _mapController.complete(controller)),
+        initialCameraPosition: _kGooglePlex,
+        markers: {
+          // Marker(
+          //   markerId: const MarkerId("_sourcelocation"),
+          //   icon: BitmapDescriptor.defaultMarker,
+          //   position: _kGooglePlex.target,
+          // ),
+          // Marker(
+          //   markerId: const MarkerId("_destinationlocation"),
+          //   icon: BitmapDescriptor.defaultMarker,
+          //   position: _kLake.target,
+          // ),
+          if (_currentPosition != null)
+            Marker(
+              markerId: const MarkerId("_currentLocation"),
+              icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+              position: _currentPosition!,
+            ),
+        },
+>>>>>>> 293a48079c215c4a78742071dbef7bdd060366ce
       ),
     );
   }
